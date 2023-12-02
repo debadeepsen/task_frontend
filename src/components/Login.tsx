@@ -1,13 +1,14 @@
-// Login.tsx
+'use client'
 import api from '@/utils/api'
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
     try {
       const loginData = await api.login(email, password)
 
@@ -23,7 +24,7 @@ const Login = () => {
     <div>
       <h2>Login</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form>
+      <form onSubmit={(e) => handleLogin(e)}>
         <label>Email:</label>
         <input
           type='email'
@@ -40,7 +41,7 @@ const Login = () => {
           required
         />
         <br />
-        <button type='button' onClick={handleLogin}>
+        <button type='submit' className='btn'>
           Login
         </button>
       </form>

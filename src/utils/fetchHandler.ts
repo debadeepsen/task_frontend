@@ -3,7 +3,7 @@ export const post = async (url: string, body?: any) => {
   try {
     const result = await fetch(url, {
       method: 'post',
-      body
+      body: JSON.stringify(body)
     })
     const data = await result.json()
 
