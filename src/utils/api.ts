@@ -1,4 +1,4 @@
-import { post } from './fetchHandler'
+import { post, get } from './fetchHandler'
 export const baseApiUrl = `http://localhost:8080/`
 
 const api = {
