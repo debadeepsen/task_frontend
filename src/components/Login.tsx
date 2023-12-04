@@ -1,18 +1,27 @@
 'use client'
+import { APP_KEY_USER } from '@/app/utils/constants'
 import api from '@/utils/api'
 import React, { FormEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('kevin@admin.com')
+  const [password, setPassword] = useState('abcd')
   const [error, setError] = useState('')
+  const router = useRouter()
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault()
     try {
       const loginData = await api.login(email, password)
 
-      if (!loginData.error) setError('')
+      if (!loginData.error) {
+        localStorage.setItem(APP_KEY_USER, JSON.stringify(email))
+        router.replace('/dashboard')
+        setError('')
+      } else {
+        setError(loginData.error)
+      }
     } catch (err) {
       console.error('Login failed:', err)
       setError('Invalid email or password')
