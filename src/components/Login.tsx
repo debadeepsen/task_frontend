@@ -11,8 +11,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const loginData = await api.login(email, password)
-
-      console.log(loginData) // Handle successful login response
+      
+      if(!loginData.error) 
       setError('')
     } catch (err) {
       console.error('Login failed:', err)

@@ -1,6 +1,4 @@
 export const post = async (url: string, body?: any) => {
-  console.log(Date())
-  console.log({ body })
   const headers: HeadersInit = new Headers()
   headers.set('Content-Type', 'application/json')
   try {
