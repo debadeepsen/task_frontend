@@ -9,6 +9,12 @@ const api = {
     })
 
     return loginData
+  },
+
+  getTasks: async (email: string) => {
+    const taskList = await get(baseApiUrl + `tasks?email=${email}`)
+
+    return taskList
   }
 }
 

@@ -16,7 +16,7 @@ const Login = () => {
       const loginData = await api.login(email, password)
 
       if (!loginData.error) {
-        localStorage.setItem(APP_KEY_USER, JSON.stringify(email))
+        localStorage.setItem(APP_KEY_USER, email)
         router.replace('/dashboard')
         setError('')
       } else {

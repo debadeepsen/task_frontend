@@ -1,4 +1,7 @@
+'use client'
+
 import { useState } from 'react'
+import TaskList from './TaskList'
 
 const Dashboard = () => {
   const [showTaskModal, setShowTaskModal] = useState(false)
@@ -18,6 +21,9 @@ const Dashboard = () => {
           >
             Add task
           </button>
+          <div>
+            <TaskList />
+          </div>
         </div>
       </div>
       {showTaskModal && (
