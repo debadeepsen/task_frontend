@@ -8,12 +8,11 @@ const Login = () => {
   const [error, setError] = useState('')
 
   const handleLogin = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const loginData = await api.login(email, password)
-      
-      if(!loginData.error) 
-      setError('')
+
+      if (!loginData.error) setError('')
     } catch (err) {
       console.error('Login failed:', err)
       setError('Invalid email or password')
@@ -21,30 +20,41 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={(e) => handleLogin(e)}>
-        <label>Email:</label>
-        <input
-          type='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <br />
-        <label>Password:</label>
-        <input
-          type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <br />
-        <button type='submit' className='btn'>
-          Login
-        </button>
-      </form>
+    <div className='bg-[var(--primary-color-faded)] pt-10 min-h-screen'>
+      <div className='w-full md:w-1/2 xl:w-1/4 bg-white mx-2 md:mx-auto p-4 shadow-md'>
+        <h2>Login</h2>
+        {error && <p className='text-red'>{error}</p>}
+        <form onSubmit={(e) => handleLogin(e)}>
+          <div className='flex py-2'>
+            <label className='flex-[1]'>Email:</label>
+            <input
+              className='flex-[3]'
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className='flex py-2'>
+            <label className='flex-[1]'>Password:</label>
+            <input
+              className='flex-[3]'
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className='py-2 flex justify-evenly'>
+            <button type='submit' className='btn btn-primary w-full mr-2'>
+              Login
+            </button>
+            <button type='submit' className='btn btn-secondary w-full'>
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

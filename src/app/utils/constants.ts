@@ -1,0 +1,1 @@
+export const APP_KEY_USER = 'app_user'
