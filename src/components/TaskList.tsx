@@ -16,6 +16,8 @@ const TaskList = () => {
       const email = localStorage.getItem(APP_KEY_USER)!
       const taskList = await api.getTasks(email)
 
+      console.log({taskList, email})
+
       if (!tasks?.length) {
         dispatch(setTaskList(taskList))
       }

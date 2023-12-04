@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import TaskList from './TaskList'
+import AddTaskModal from './AddTaskModal'
 
 const Dashboard = () => {
   const [showTaskModal, setShowTaskModal] = useState(false)
@@ -27,27 +28,7 @@ const Dashboard = () => {
         </div>
       </div>
       {showTaskModal && (
-        // going to refactor this into another component if time permits
-        <div className='fixed left-0 top-0 w-screen h-screen z-[10] bg-zinc-900/30 flex justify-center items-center'>
-          <div className='p-4 bg-white rounded-md'>
-            <form>
-              <input
-                type='text'
-                placeholder='Task name'
-                className='block p-4'
-              />
-              <div className='flex justify-end mt-2'>
-                <button className='btn btn-primary mr-2 w-full'>Save</button>
-                <button
-                  className='btn btn-secondary w-full'
-                  onClick={() => setShowTaskModal(false)}
-                >
-                  Close
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <AddTaskModal onClose={() => setShowTaskModal(false)} />
       )}
     </div>
   )

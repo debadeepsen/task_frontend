@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export type Task = {
-  id: number
+  id?: number
   title: string
-  description: string | null
-  completed: boolean
-  deleted: boolean
+  completed?: boolean
+  deleted?: boolean
 }
 
 const initialState: Task[] = []

@@ -15,6 +15,15 @@ const api = {
     const taskList = await get(baseApiUrl + `tasks?email=${email}`)
 
     return taskList
+  },
+
+  addTask: async (email: string, title: string) => {
+    const taskList = await post(baseApiUrl + 'tasks', {
+      email,
+      title
+    })
+
+    return taskList
   }
 }
 
