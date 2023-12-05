@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import TaskList from './TaskList'
 import AddTaskModal from './AddTaskModal'
+import { loadTasksIntoState } from '@/utils/util'
 
 const Dashboard = () => {
   const [showTaskModal, setShowTaskModal] = useState(false)
@@ -16,12 +17,15 @@ const Dashboard = () => {
       <div className='p-6 pt-10 min-h-[calc(100vh-50px)] bg-[var(--primary-color-faded)]'>
         <div className='max-w-[800px] mx-auto'>
           <h1>Welcome to your Dashboard</h1>
-          <button
-            className='btn btn-primary'
-            onClick={() => setShowTaskModal(true)}
-          >
-            Add task
-          </button>
+          <div className='flex justify-between'>
+            <button
+              className='btn btn-primary'
+              onClick={() => setShowTaskModal(true)}
+            >
+              Add task
+            </button>
+            <button className='btn btn-secondary' onClick={loadTasksIntoState}>Reload</button>
+          </div>
           <div>
             <TaskList />
           </div>

@@ -1,27 +1,15 @@
 'use client'
 
-import { APP_KEY_USER } from '@/app/utils/constants'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import api from '@/utils/api'
 import { RootState } from '@/app/store'
-import { setTaskList } from '@/app/store/slices/taskSlice'
+import { loadTasksIntoState } from '@/utils/util'
 
 const TaskList = () => {
   const tasks = useSelector((state: RootState) => state.tasks)
-  const dispatch = useDispatch()
 
   useEffect(() => {
-    ;(async () => {
-      const email = localStorage.getItem(APP_KEY_USER)!
-      const taskList = await api.getTasks(email)
-
-      console.log({taskList, email})
-
-      if (!tasks?.length) {
-        dispatch(setTaskList(taskList))
-      }
-    })()
+    loadTasksIntoState()
   }, [])
 
   return (

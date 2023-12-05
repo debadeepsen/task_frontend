@@ -13,8 +13,10 @@ const AddTaskModal = ({ onClose }: { onClose: () => void }) => {
   const handleSave = async (e: FormEvent) => {
     e.preventDefault()
     const email = localStorage.getItem(APP_KEY_USER)!
-    await api.addTask(email, taskTitle)
-    dispatch(addTask({ title: taskTitle }))
+    const result = await api.addTask(email, taskTitle)
+
+    // console.log({taskId})
+    dispatch(addTask({ id: result.taskId, title: taskTitle, completed: false, deleted: false }))
     onClose?.()
   }
 
